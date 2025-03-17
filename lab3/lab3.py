@@ -31,7 +31,7 @@ def calculate(expression):
                 i += 1
             values.append(float(expression[j:i]))
         elif expression[i] in '+-*/^':
-            while operators and operators[-1] in '^*/' and expression[i] in '+-':
+            while operators and operators[-1] != '(' and get_priority(operators[-1]) >= get_priority(expression[i]):
                 apply_operator()
             operators.append(expression[i])
             i += 1
@@ -41,10 +41,19 @@ def calculate(expression):
         apply_operator()
     return values[0]
 
+def get_priority(op):
+    if op in '+-':
+        return 1
+    elif op in '*/':
+        return 2
+    elif op == '^':
+        return 3
+    return 0
+
 def main():
     while True:
         try:
-            expression = input("Введите выражение: ")
+            expression = input("Введите выражение:")
             result = calculate(expression)
             print("Результат:", result)
         except ValueError as e:
