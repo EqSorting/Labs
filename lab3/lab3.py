@@ -31,12 +31,15 @@ def calculate(expression):
                 i += 1
             values.append(float(expression[j:i]))
         elif expression[i] in '+-*/^':
+            if expression[i] and expression[i+1] == '+' or '-' or '*' or '/' or '^':
+                print("Ошибка ввода")
             while operators and operators[-1] != '(' and get_priority(operators[-1]) >= get_priority(expression[i]):
                 apply_operator()
             operators.append(expression[i])
             i += 1
         elif expression[i] == ' ':
-            i += 1
+            print("Ошибка ввода")
+            return main()
     while operators:
         apply_operator()
     return values[0]
