@@ -1,7 +1,7 @@
 import re
 
 def calculate(expression):
-    if not re.match(r'^[\d\+\-\*\/\^\. ]+$', expression):
+    if not re.match(r'^[\d\+\-\*\/\^\.\ ]+$', expression):
         raise ValueError("Некорректное выражение")
 
     def apply_operator():
@@ -33,7 +33,14 @@ def calculate(expression):
             while i < len(expression) and (expression[i].isdigit() or expression[i] == '.'):
                 i += 1
             values.append(float(expression[j:i]))
-        elif expression[i] in '+-*/^':
+        elif expression[i] == '-':
+            if i == 0:
+                values.append(-float(expression[i+1]))
+            else:
+                operators.append('-')
+                values.append(float(expression[i+1]))
+            i+=2
+        elif expression[i] in '+*/^':
             if expression[i] in '+-*/^' and i+1 < len(expression) and expression[i+1] in '+-*/^':
                 raise ValueError("Некорректное выражение")
             while operators and operators[-1] != '(' and get_priority(operators[-1]) >= get_priority(expression[i]):
