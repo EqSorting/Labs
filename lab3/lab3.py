@@ -49,6 +49,7 @@ def calculate(expression):
             i += 1
         elif expression[i] == ' ':
             print("Ошибка ввода")
+            return main()
     while operators:
         apply_operator()
     return values[0]
