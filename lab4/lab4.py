@@ -4,18 +4,29 @@ class Matrix:
       length = 0
       width = 0
 
+A = Matrix(...)
+A[1,1] = 5
+print(A[0,3])
+
 def main():
     Matrix.width = int(input("Введите кол-во cтрок:"))
+    if Matrix.width == " ":
+       print("Введите число")
+       return main()
     Matrix.length = int(input("Введите кол-во столбцов:"))
+    if Matrix.length == " ":
+       print("Введите число")
+       return main()
     element = [[0 for i in range(Matrix.length)] for j in range(Matrix.width)]
     print("Введите значения матрицы")
     for i in range (Matrix.width):
         for j in range (Matrix.length):
+             element[i][j] = float(input())
              if element[i][j] == ' ':
                 print("Ошибка ввода матрицы")
                 return main()
              else:
-                element[i][j] = float(input())
+                continue
 
     print()
     print("Ваша матрица")
@@ -50,6 +61,7 @@ def apply_matrix(matrix, width, length):
        element2 = [[0 for i in range(length2)] for j in range(width2)]
        for i in range (width2):
           for j in range (length2):
+
                if element2[i][j] == ' ':
                   print("Ошибка ввода матрицы")
                   return main()
@@ -118,8 +130,8 @@ def apply_matrix(matrix, width, length):
        width = length
        length = width
        elements = [[0 for i in range(length)] for j in range(width)]
-       for i in range(length):
-          for j in range(width):
+       for i in range(width):
+          for j in range(length):
                if i < len(matrix) and j < len(matrix[0]):
                    elements[j][i] = matrix[i][j]
 
