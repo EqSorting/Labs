@@ -4,10 +4,6 @@ class Matrix:
       length = 0
       width = 0
 
-A = Matrix(...)
-A[1,1] = 5
-print(A[0,3])
-
 def main():
     Matrix.width = int(input("Введите кол-во cтрок:"))
     if Matrix.width == " ":
@@ -55,8 +51,8 @@ def apply_matrix(matrix, width, length):
     choice = int(input("Ваш выбор:"))
 
     if choice == 1:
-       width2 = width;
-       length2 = length;
+       width2 = width
+       length2 = length
        print("Введите элементы матрицы")
        element2 = [[0 for i in range(length2)] for j in range(width2)]
        for i in range (width2):
@@ -78,8 +74,8 @@ def apply_matrix(matrix, width, length):
           print()
        return apply_matrix(matrix, width, length)
     elif choice == 2:
-       width3 = width;
-       length3 = length;
+       width3 = width
+       length3 = length
        print("Введите элементы матрицы")
        element3 = [[0 for i in range(length3)] for j in range(width3)]
        for i in range (width3):
